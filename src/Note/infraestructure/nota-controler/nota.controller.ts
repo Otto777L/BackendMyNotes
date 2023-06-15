@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/c
 import { CrearNotaComando } from 'src/Note/application/crear_Nota/CrearNotaComando';
 import { CrearNotaDTO } from './CrearNotaDTO';
 import { CommandHandler } from '../../../core/application/core_Comandos/CommandHandler';
-import { TipoComando } from 'src/core/application/core_Comandos/TipoComando';
+import { TipoComando } from 'src/core/application/core_Comandos/TipoComandoNotas';
 import { IServicio } from 'src/core/application/core_Comandos/IServicio';
 import { CrearNota } from 'src/Note/application/crear_Nota/CrearNota';
 import { GeneradorUUID } from '../UUID/GeneradorUUID';

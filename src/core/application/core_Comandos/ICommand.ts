@@ -1,4 +1,4 @@
-import { TipoComando } from "./TipoComando";
+import { TipoComando } from "./TipoComandoNotas";
 
 export abstract class ICommand{
     protected tipoComando:TipoComando;

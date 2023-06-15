@@ -1,5 +1,5 @@
+import { IsDateString, IsNumber, IsOptional, IsString } from "class-validator";
 
-import { IsDateString, IsEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CrearNotaDTO{
     @IsString()
