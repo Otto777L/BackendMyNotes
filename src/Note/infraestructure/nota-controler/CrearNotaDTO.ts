@@ -1,7 +1,7 @@
+
 import { IsDateString, IsEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CrearNotaDTO{
-    
     @IsString()
     titulo:string;
     @IsString()
