@@ -27,7 +27,7 @@ export class CrearNota implements IServicio<MementoNota>{
         */
         let notaId:string = this.generadorUUID.generate();
         let nota:Nota = FabricaNota.fabricar(notaId, cmd.titulo,cmd.cuerpo,cmd.fechaCreacion,cmd.fechaEliminacion,cmd.fechaActualizacion,
-                                             cmd.latitud,cmd.altitud, cmd.usuarioId);
+                                                cmd.latitud,cmd.altitud, cmd.usuarioId);
         
         console.log(nota);    
         const vistaNota:MementoNota = nota.guardar();
