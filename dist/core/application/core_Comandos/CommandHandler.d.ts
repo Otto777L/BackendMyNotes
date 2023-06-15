@@ -1,6 +1,6 @@
 import { IServicio } from "./IServicio";
 import { ICommand } from "./ICommand";
-import { TipoComando } from "./TipoComando";
+import { TipoComando } from "./TipoComandoNotas";
 import { Either } from 'src/core/ortogonal_solutions/Either';
 export declare class CommandHandler<TView> {
     private comandos;

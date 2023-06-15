@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const CrearNotaComando_1 = require("../../application/crear_Nota/CrearNotaComando");
 const CrearNotaDTO_1 = require("./CrearNotaDTO");
 const CommandHandler_1 = require("../../../core/application/core_Comandos/CommandHandler");
-const TipoComando_1 = require("../../../core/application/core_Comandos/TipoComando");
+const TipoComandoNotas_1 = require("../../../core/application/core_Comandos/TipoComandoNotas");
 const CrearNota_1 = require("../../application/crear_Nota/CrearNota");
 const GeneradorUUID_1 = require("../UUID/GeneradorUUID");
 const Optional_1 = require("../../../core/ortogonal_solutions/Optional");
@@ -27,7 +27,7 @@ let NotaController = exports.NotaController = class NotaController {
         this.adapter = adapter;
         this.commandHandler = new CommandHandler_1.CommandHandler();
         const servicioCrearNota = new CrearNota_1.CrearNota(new GeneradorUUID_1.GeneradorUUID(), adapter);
-        this.commandHandler.addComando(servicioCrearNota, TipoComando_1.TipoComando.CrearNota);
+        this.commandHandler.addComando(servicioCrearNota, TipoComandoNotas_1.TipoComando.CrearNota);
     }
     getAllNotes() {
         return "hello world";

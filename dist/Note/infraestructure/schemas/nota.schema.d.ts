@@ -25,15 +25,15 @@
 import { Document, Model } from "mongoose";
 export type NotasDocument = NotaSchema & Document;
 export declare class NotaSchema {
-    idnota: string;
-    titulonota: string;
-    cuerponota: string;
-    ubicacion_latitud: number;
-    ubicacion_longitud: number;
-    fecha_creacion: Date;
-    fecha_eliminacion: Date;
-    fecha_actualizacion: Date;
-    idouserowner: string;
+    notaId: string;
+    titulo: string;
+    cuerpo: string;
+    fechaCreacion: Date;
+    fechaEliminacion: Date;
+    fechaActualizacion: Date;
+    latitud: number;
+    altitud: number;
+    usuarioId: string;
 }
 export declare const notasSchema: import("mongoose").Schema<NotaSchema, Model<NotaSchema, any, any, any, Document<unknown, any, NotaSchema> & Omit<NotaSchema & {
     _id: import("mongoose").Types.ObjectId;
