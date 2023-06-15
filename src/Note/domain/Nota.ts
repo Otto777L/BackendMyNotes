@@ -16,18 +16,19 @@ export class Nota {
     //private usuario:IdUsuario;
 
 
-    constructor(id:IdNota, t:TituloNota, c:CuerpoNota, fechaCreacion:FechaNota, ubi:UbicacionNota){
+    constructor(id:IdNota, t:TituloNota, c:CuerpoNota, fechaCreacion:FechaNota, fechaEliminacion:Optional<FechaNota>,
+                fechaActualizacion:FechaNota, ubi:UbicacionNota){
         this.notaId = id;
         this.titulo = t;
         this.cuerpo = c;
         this.fechaCreacion = fechaCreacion;
-        this.fechaEliminacion = new Optional<FechaNota>();
-        this.fechaActualizacion = fechaCreacion;
+        this.fechaEliminacion = fechaEliminacion;
+        this.fechaActualizacion = fechaActualizacion;
         this.ubicacion = ubi;
     }
 
     public eliminar(){
-        this.fechaEliminacion = new Optional<FechaNota>(new FechaNota());
+        //this.fechaEliminacion = new Optional<FechaNota>(new FechaNota());
     }
 
     public setTitulo(t: TituloNota):void{
