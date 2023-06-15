@@ -27,8 +27,8 @@ export class Nota {
         this.ubicacion = ubi;
     }
 
-    public eliminar(){
-        //this.fechaEliminacion = new Optional<FechaNota>(new FechaNota());
+    public eliminar(fecha:FechaNota){
+        this.fechaEliminacion = new Optional<FechaNota>(fecha);
     }
 
     public setTitulo(t: TituloNota):void{
