@@ -10,7 +10,7 @@ export class CommandHandler<TView>{
         this.comandos = new Map();
     }
 
-    public execute(dto:ICommand):Either<TView,Error>{
+    public execute(dto:ICommand):Promise<Either<TView,Error>>{
         for (let key of this.comandos.keys()) {
             if (dto.getType() == key){
                 return this.comandos.get(key).execute(dto);

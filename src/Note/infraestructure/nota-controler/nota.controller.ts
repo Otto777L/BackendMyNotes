@@ -1,43 +1,41 @@
 import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CrearNotaComando } from 'src/Note/application/crear_Nota/CrearNotaComando';
 import { CrearNotaDTO } from './CrearNotaDTO';
-import { CommandHandler } from '../../application/core_Comandos/CommandHandler';
-import { TipoComando } from 'src/Note/application/core_Comandos/TipoComando';
-import { ICommand } from 'src/Note/application/core_Comandos/ICommand';
-import { IServicio } from 'src/Note/application/core_Comandos/IServicio';
+import { CommandHandler } from '../../../core/application/core_Comandos/CommandHandler';
+import { TipoComando } from 'src/core/application/core_Comandos/TipoComando';
+import { IServicio } from 'src/core/application/core_Comandos/IServicio';
 import { CrearNota } from 'src/Note/application/crear_Nota/CrearNota';
 import { GeneradorUUID } from '../UUID/GeneradorUUID';
 import { Either } from 'src/core/ortogonal_solutions/Either';
 import { Optional } from 'src/core/ortogonal_solutions/Optional';
-import { VistaNota } from 'src/Note/application/crear_Nota/VistaNota';
-import { IsEmpty } from 'class-validator';
+import { MementoNota } from 'src/Note/domain/MementoNota';
+import { MongoNotaAdapter } from '../repositories_adapter/MongoNotaAdapter';
 
 @Controller('nota')
 export class NotaController {
-    commandHandler:CommandHandler<VistaNota> = new CommandHandler();
+    commandHandler:CommandHandler<MementoNota> = new CommandHandler();
 
-    constructor(){
+    constructor(private adapter: MongoNotaAdapter){
         /*INYECCION DE DEPENDENCIAS*/
-        const servicioCrearNota:IServicio<VistaNota> = new CrearNota(new GeneradorUUID());
+        const servicioCrearNota:IServicio<MementoNota> = new CrearNota(new GeneradorUUID(), adapter);
         this.commandHandler.addComando(servicioCrearNota, TipoComando.CrearNota);
     }
 
     @Get()
-    helloworld(){
+    getAllNotes(){
         return "hello world";
     }
 
     @Post()
     @UsePipes(ValidationPipe)
-    crearNota(@Body() nuevaNota:CrearNotaDTO){
+    async crearNota(@Body() nuevaNota:CrearNotaDTO){
         
         const fechaeliminada:Optional<Date> = new Optional<Date>(nuevaNota.fechaEliminacion);
-        
         const cmd:CrearNotaComando = new CrearNotaComando(nuevaNota.titulo, nuevaNota.cuerpo, nuevaNota.fechaCreacion, fechaeliminada,
-                                                            nuevaNota.fechaActualizacion, nuevaNota.latitud, nuevaNota.altitud, "");
+                                                            nuevaNota.fechaActualizacion, nuevaNota.latitud, nuevaNota.altitud, 
+                                                            nuevaNota.usuarioId);
         
-        const result:Either<VistaNota,Error> = this.commandHandler.execute(cmd);
-        
+        const result:Either<MementoNota,Error> = await this.commandHandler.execute(cmd);
 
         if (result.isLeft()){
             return result.getLeft();

@@ -5,6 +5,7 @@ import { IdNota } from "../value_objects/IdNota";
 import { CuerpoNota } from "../value_objects/CuerpoNota";
 import { FechaNota } from "../value_objects/FechaNota";
 import { UbicacionNota } from "../value_objects/UbicacionNota";
+import { IdUser } from "src/User/domain/value_objects/IdUser";
 
 export class FabricaNota {
     static fabricar(id:string, titulo:string, cuerpo:string, fechaCreacion:Date, fechaEliminacion:Optional<Date>, fechaActualizacion:Date,
@@ -23,9 +24,8 @@ export class FabricaNota {
 
         const fa:FechaNota = new FechaNota(fechaActualizacion);
         const ubi:UbicacionNota = new UbicacionNota(latitud, altitud);
-        //const user: = new (usuarioId);
+        const user:IdUser = new IdUser(usuarioId);
     
-        return new Nota(i,t,c,fc,fe,fa,ubi);
-
+        return new Nota(i,t,c,fc,fe,fa,ubi,user);
     }
 }

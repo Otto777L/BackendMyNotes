@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { notasSchema} from './schemas/nota.schema';
-import { NotaController } from './Note/infraestructure/controllers/nota/nota.controller';
-import { notaService } from './Note/application/services/Notaservice';
-import { NOTA_REPO } from './Note/domain/repositories/repository.interface';
-import { MongoNotaRepository } from './Note/infraestructure/repositories_adapter/nota.repository.adapter';
+import { notasSchema} from './Note/infraestructure/schemas/nota.schema';
 import { Nota } from './Note/domain/Nota';
+import { NotaController } from './Note/infraestructure/nota-controler/nota.controller';
+import { MongoNotaRepositorio } from './Note/infraestructure/repositories_adapter/nota.repository.adapter';
+import { MongoNotaAdapter } from './Note/infraestructure/repositories_adapter/MongoNotaAdapter';
 
 @Module({
   imports: [
@@ -15,10 +14,7 @@ import { Nota } from './Note/domain/Nota';
    }])
   ],
   controllers: [NotaController],
-  providers: [notaService, {
-    provide: NOTA_REPO,
-    useClass:MongoNotaRepository
-
-  }],
+  providers: [MongoNotaAdapter, { provide: "RepositorioNota", useClass:MongoNotaRepositorio}
+  ],
 })
 export class AppModule {}
