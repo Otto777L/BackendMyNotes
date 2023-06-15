@@ -1,10 +1,12 @@
 import { Either } from "src/core/ortogonal_solutions/Either";
-import { IComandoNota } from "../core_Comandos/IComandoNota";
-import { CrearNotaDTO } from "./CrearNotaDTO";
+import { IServicio } from "../core_Comandos/IServicio";
+import { CrearNotaComando } from "./CrearNotaComando";
 import { IGeneradorUUID } from '../core_Comandos/IGeneradorUUID';
 import { Nota } from "src/Note/domain/Nota";
+import { FabricaNota } from "src/Note/domain/fabrics/FabricaNota";
+import { VistaNota } from "./VistaNota";
 
-export class CrearNota implements IComandoNota<CrearNotaDTO>{
+export class CrearNota implements IServicio<VistaNota>{
     private readonly generadorUUID:IGeneradorUUID;
     private readonly repositorioNota;
 
@@ -12,7 +14,7 @@ export class CrearNota implements IComandoNota<CrearNotaDTO>{
         this.generadorUUID = g;
     }
 
-    public execute(cmd:CrearNotaDTO):Either<CrearNotaDTO,Error>{
+    public execute(cmd:CrearNotaComando):Either<VistaNota,Error>{
         /*
             generar uuid  ####
             crear objecto 
@@ -21,8 +23,9 @@ export class CrearNota implements IComandoNota<CrearNotaDTO>{
                 - guardar y actualizar lo que se deba actualizar  
         */
         let notaId:string = this.generadorUUID.generate();
-        let nota:Nota;//new Nota();
-
-        return Either.makeLeft<CrearNotaDTO, Error>(cmd);
+        let nota:Nota = FabricaNota.fabricar(notaId, cmd.titulo,cmd.cuerpo,cmd.fechaCreacion,cmd.fechaEliminacion,cmd.fechaActualizacion,
+                                             cmd.latitud,cmd.altitud, ""/*FALTA INTEGRAR AL USUARIO*/);
+        console.log(nota);    
+        return Either.makeLeft<VistaNota, Error>(new VistaNota(notaId, cmd));
     }
 }

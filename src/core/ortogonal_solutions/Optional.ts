@@ -10,7 +10,7 @@ export class Optional<T>{
     }
 
 
-    public HasValue(){
+    public HasValue():boolean{
         return this.assign;
     }
 
