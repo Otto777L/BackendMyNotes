@@ -1,8 +1,8 @@
 import { Optional } from "src/core/ortogonal_solutions/Optional";
 import { TipoComando } from "../core_Comandos/TipoComando";
-import { IDataTransferCommand } from "../core_Comandos/IDataTransferCommand";
+import { ICommand } from "../core_Comandos/ICommand";
 
-export class CrearNotaDTO extends IDataTransferCommand{
+export class CrearNotaComando extends ICommand{
     titulo:string;
     cuerpo:string;
     fechaCreacion:Date;
@@ -12,7 +12,7 @@ export class CrearNotaDTO extends IDataTransferCommand{
     altitud:number;
     usuarioId:string;
 
-    constructor(t:string, c:string, fc:Date, fe:Optional<Date>, fa:Date, l:number, a:number, u:string){
+    constructor(t:string, c:string, fc:Date, fe:Optional<Date>, fa:Date, l:number, a:number, user:string){
         super();
         super.tipoComando = TipoComando.CrearNota;
         this.titulo = t;
@@ -22,6 +22,6 @@ export class CrearNotaDTO extends IDataTransferCommand{
         this.fechaActualizacion = fa;
         this.latitud = l;
         this.altitud = a;
-        this.usuarioId = u;
+        this.usuarioId = user;
     }
 }
