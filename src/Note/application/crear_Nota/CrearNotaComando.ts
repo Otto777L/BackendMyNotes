@@ -1,5 +1,5 @@
 import { Optional } from "src/core/ortogonal_solutions/Optional";
-import { TipoComando } from "../../../core/application/core_Comandos/TipoComando";
+import { TipoComando } from "../../../core/application/core_Comandos/TipoComandoNotas";
 import { ICommand } from "../../../core/application/core_Comandos/ICommand";
 
 export class CrearNotaComando extends ICommand{
