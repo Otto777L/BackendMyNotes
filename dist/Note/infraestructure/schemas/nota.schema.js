@@ -19,57 +19,57 @@ __decorate([
         required: true,
     }),
     __metadata("design:type", String)
-], NotaSchema.prototype, "idnota", void 0);
+], NotaSchema.prototype, "notaId", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         required: true,
         trim: true
     }),
     __metadata("design:type", String)
-], NotaSchema.prototype, "titulonota", void 0);
+], NotaSchema.prototype, "titulo", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         required: true,
         trim: true
     }),
     __metadata("design:type", String)
-], NotaSchema.prototype, "cuerponota", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({
-        required: true,
-    }),
-    __metadata("design:type", Number)
-], NotaSchema.prototype, "ubicacion_latitud", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({
-        required: true,
-    }),
-    __metadata("design:type", Number)
-], NotaSchema.prototype, "ubicacion_longitud", void 0);
+], NotaSchema.prototype, "cuerpo", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         required: true,
     }),
     __metadata("design:type", Date)
-], NotaSchema.prototype, "fecha_creacion", void 0);
+], NotaSchema.prototype, "fechaCreacion", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         required: false,
     }),
     __metadata("design:type", Date)
-], NotaSchema.prototype, "fecha_eliminacion", void 0);
+], NotaSchema.prototype, "fechaEliminacion", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         required: true,
     }),
     __metadata("design:type", Date)
-], NotaSchema.prototype, "fecha_actualizacion", void 0);
+], NotaSchema.prototype, "fechaActualizacion", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        required: true,
+    }),
+    __metadata("design:type", Number)
+], NotaSchema.prototype, "latitud", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        required: true,
+    }),
+    __metadata("design:type", Number)
+], NotaSchema.prototype, "altitud", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         required: true,
     }),
     __metadata("design:type", String)
-], NotaSchema.prototype, "idouserowner", void 0);
+], NotaSchema.prototype, "usuarioId", void 0);
 exports.NotaSchema = NotaSchema = __decorate([
     (0, mongoose_1.Schema)()
 ], NotaSchema);

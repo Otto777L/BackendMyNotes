@@ -5,8 +5,8 @@ class UsertUsecase {
     constructor(UserRepository) {
         this.UserRepository = UserRepository;
         this.findUserLogin = async (email, pass) => {
-            const productFind = this.UserRepository.findUserLogin(email, pass);
-            return productFind;
+            const user = this.UserRepository.findUserLogin(email, pass);
+            return user;
         };
     }
 }

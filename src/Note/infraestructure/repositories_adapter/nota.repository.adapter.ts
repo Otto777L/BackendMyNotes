@@ -10,15 +10,15 @@ import { Error } from "mongoose";
 import { MongoError } from "mongodb";
 
 @Injectable()
-export class MongoNotaRepositorio implements RepositorioNota{
+export class MongoNotaRepositorio{
     constructor(@InjectModel(Nota.name) private readonly notamodel:notaModel){}
 
     async createNota(nota:MementoNota): Promise<Either<Optional<MementoNota>, Error>> {
         //const view:VistaNota = new VistaNota();
         console.log('CreateNotaDTO', nota);
         try {
-            console.log('prueba2', await new this.notamodel(nota).save());
-            const notaGuardada = await new this.notamodel(nota).save();
+            //console.log('prueba2', await new this.notamodel(nota));
+            const notaGuardada = await (new this.notamodel(nota)).save();
             
             return Promise.resolve(Either.makeLeft<Optional<MementoNota>, Error>(new Optional<MementoNota>(nota)));
         } catch (e) {

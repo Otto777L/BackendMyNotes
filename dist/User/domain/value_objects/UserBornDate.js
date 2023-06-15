@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserBornDate = void 0;
 class UserBornDate {
-    constructor() {
-        this.date = new Date();
+    constructor(d) {
+        this.date = d;
     }
     equals(other) {
         if (other.getFecha() == this.getFecha())

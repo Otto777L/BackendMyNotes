@@ -25,8 +25,7 @@ let MongoNotaRepositorio = exports.MongoNotaRepositorio = class MongoNotaReposit
     async createNota(nota) {
         console.log('CreateNotaDTO', nota);
         try {
-            console.log('prueba2', await new this.notamodel(nota).save());
-            const notaGuardada = await new this.notamodel(nota).save();
+            const notaGuardada = await (new this.notamodel(nota)).save();
             return Promise.resolve(Either_1.Either.makeLeft(new Optional_1.Optional(nota)));
         }
         catch (e) {

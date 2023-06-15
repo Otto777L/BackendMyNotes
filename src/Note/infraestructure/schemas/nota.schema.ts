@@ -9,49 +9,49 @@ export class NotaSchema{
         unique:true,
         required:true,
     })
-    idnota:string;
+    notaId:string;
 
     @Prop({
         required:true,
         trim:true
     })
-    titulonota:string;
+    titulo:string;
 
     @Prop({
         required:true,
         trim:true
     })
-    cuerponota:string;
+    cuerpo:string;
 
     @Prop({
         required:true,
     })
-    ubicacion_latitud:number;
-
-    @Prop({
-        required:true,
-    })
-    ubicacion_longitud:number;
-
-    @Prop({
-        required:true,
-    })
-    fecha_creacion:Date;
+    fechaCreacion:Date;
 
     @Prop({
         required:false,
     })
-    fecha_eliminacion:Date;
+    fechaEliminacion:Date;
 
     @Prop({
         required:true,
     })
-    fecha_actualizacion:Date;
-    
+    fechaActualizacion:Date;
+
     @Prop({
         required:true,
     })
-    idouserowner:string;
+    latitud:number;
+
+    @Prop({
+        required:true,
+    })
+    altitud:number;
+
+    @Prop({
+        required:true,
+    })
+    usuarioId:string;
 }
 
 export const notasSchema = SchemaFactory.createForClass(NotaSchema);
