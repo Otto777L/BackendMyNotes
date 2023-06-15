@@ -1,10 +1,10 @@
-import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CrearNotaComando } from 'src/Note/application/crear_Nota/CrearNotaComando';
 import { CrearNotaDTO } from './CrearNotaDTO';
-import { CommandHandler } from '../../application/core_Comandos/CommandHandler';
-import { TipoComando } from 'src/Note/application/core_Comandos/TipoComando';
-import { ICommand } from 'src/Note/application/core_Comandos/ICommand';
-import { IServicio } from 'src/Note/application/core_Comandos/IServicio';
+import { CommandHandler } from '../../../core/application/core_Comandos/CommandHandler';
+import { TipoComando } from 'src/core/application/core_Comandos/TipoComando';
+import { ICommand } from 'src/core/application/core_Comandos/ICommand';
+import { IServicio } from 'src/core/application/core_Comandos/IServicio';
 import { CrearNota } from 'src/Note/application/crear_Nota/CrearNota';
 import { GeneradorUUID } from '../UUID/GeneradorUUID';
 import { Either } from 'src/core/ortogonal_solutions/Either';
@@ -23,7 +23,7 @@ export class NotaController {
     }
 
     @Get()
-    helloworld(){
+    getAllNotes(){
         return "hello world";
     }
 
@@ -37,7 +37,6 @@ export class NotaController {
                                                             nuevaNota.fechaActualizacion, nuevaNota.latitud, nuevaNota.altitud, "");
         
         const result:Either<VistaNota,Error> = this.commandHandler.execute(cmd);
-        
 
         if (result.isLeft()){
             return result.getLeft();
@@ -47,5 +46,13 @@ export class NotaController {
         }
     }
 
+    @Delete(':id')
+    eliminarNota(){
 
+    }
+
+    @Patch(':id')
+    modificarNota(){
+        
+    }
 }

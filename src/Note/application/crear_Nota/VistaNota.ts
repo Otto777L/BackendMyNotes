@@ -1,3 +1,4 @@
+import { Optional } from "src/core/ortogonal_solutions/Optional";
 import { CrearNotaComando } from "./CrearNotaComando";
 
 export class VistaNota{
@@ -11,16 +12,16 @@ export class VistaNota{
     altitud:number;
     usuarioId:string;
 
-    constructor(id:string, dto:CrearNotaComando){
+    constructor(id:string, t:string, c:string, fc:Date, fe:Optional<Date>, fa:Date, l:number, a:number, user:string){
         this.notaId = id;
-        this.titulo = dto.titulo;
-        this.cuerpo = dto.cuerpo;
-        this.fechaCreacion = dto.fechaCreacion;
-        if (dto.fechaEliminacion.HasValue())
-            this.fechaEliminacion = dto.fechaEliminacion.getValue();
-        this.fechaActualizacion = dto.fechaActualizacion;
-        this.latitud = dto.latitud;
-        this.altitud = dto.altitud;
-        this.usuarioId = dto.usuarioId;
+        this.titulo = t;
+        this.cuerpo = c;
+        this.fechaCreacion = fc;
+        if (fe.HasValue())
+            this.fechaEliminacion = fe.getValue();
+        this.fechaActualizacion = fa;
+        this.latitud = l;
+        this.altitud = a;
+        this.usuarioId = user;
     }
 }
