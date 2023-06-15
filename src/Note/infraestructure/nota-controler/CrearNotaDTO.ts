@@ -1,8 +1,7 @@
-import { IsDate, IsDateString, IsEmpty, IsNumber, IsOptional, IsString } from "class-validator";
-import { Optional } from "src/core/ortogonal_solutions/Optional";
+
+import { IsDateString, IsEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CrearNotaDTO{
-    
     @IsString()
     titulo:string;
     @IsString()

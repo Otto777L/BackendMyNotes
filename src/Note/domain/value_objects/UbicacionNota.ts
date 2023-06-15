@@ -2,11 +2,11 @@ import { IValueObject } from "src/core/domain/IValueObject";
 
 export class UbicacionNota implements IValueObject{
     private latitud:number;
-    private altitud:number;
+    private longitud:number;
 
     constructor(l:number, a:number){
         this.latitud = l;
-        this.altitud = a;
+        this.longitud = a;
     }
 
     public getLatitud():number{
@@ -14,11 +14,11 @@ export class UbicacionNota implements IValueObject{
     }
 
     public getAltitud():number{
-        return this.altitud;
+        return this.longitud;
     }
 
     public equals(other:UbicacionNota):boolean{
-        if((other.getAltitud() == this.altitud) && (other.getLatitud() == this.latitud))
+        if((other.getAltitud() == this.longitud) && (other.getLatitud() == this.latitud))
             return true;
         else
             return false;

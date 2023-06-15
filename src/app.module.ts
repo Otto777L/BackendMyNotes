@@ -1,10 +1,20 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { notasSchema} from './Note/infraestructure/schemas/nota.schema';
+import { Nota } from './Note/domain/Nota';
 import { NotaController } from './Note/infraestructure/nota-controler/nota.controller';
-
+import { MongoNotaRepositorio } from './Note/infraestructure/repositories_adapter/nota.repository.adapter';
+import { MongoNotaAdapter } from './Note/infraestructure/repositories_adapter/MongoNotaAdapter';
 
 @Module({
-  imports: [],
+  imports: [
+   MongooseModule.forRoot('mongodb+srv://hanchoel16:123h@cluster0.hwhtx8l.mongodb.net/nota?retryWrites=true&w=majority'),
+    MongooseModule.forFeature([{name:Nota.name,
+    schema:notasSchema
+   }])
+  ],
   controllers: [NotaController],
-  providers: [],
+  providers: [MongoNotaAdapter, { provide: "RepositorioNota", useClass:MongoNotaRepositorio}
+  ],
 })
 export class AppModule {}

@@ -3,8 +3,8 @@ import { IValueObject } from "src/core/domain/IValueObject";
 export class FechaNota implements IValueObject{
     private date:Date;
     
-    constructor(f:Date){
-        this.date = f;
+    constructor(d:Date){
+        this.date = d;
         /*let testStart:Date = new Date("12/06/2023"); 
         //La fecha minima se puede colocar como el primer dia en que se empieza la prueba
         if (d.getTime() >= testStart.getTime())
