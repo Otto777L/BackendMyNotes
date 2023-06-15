@@ -5,8 +5,8 @@ export class UsertUsecase{
 
 public findUserLogin =async (email: string ,pass :string)=>{
   //  const product= new ProductValue(name)
-    const productFind = this.UserRepository.findUserLogin(email,pass)
-    return productFind
+    const user = this.UserRepository.findUserLogin(email,pass)
+    return user
 }
 
 }
