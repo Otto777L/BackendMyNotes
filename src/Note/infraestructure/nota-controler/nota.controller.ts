@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CrearNotaComando } from 'src/Note/application/crear_Nota/CrearNotaComando';
-import { CrearNotaDTO } from './CrarNotaDTO';
+import { CrearNotaDTO } from './CrearNotaDTO';
 import { CommandHandler } from '../../application/core_Comandos/CommandHandler';
 import { TipoComando } from 'src/Note/application/core_Comandos/TipoComando';
 import { ICommand } from 'src/Note/application/core_Comandos/ICommand';
@@ -10,6 +10,7 @@ import { GeneradorUUID } from '../UUID/GeneradorUUID';
 import { Either } from 'src/core/ortogonal_solutions/Either';
 import { Optional } from 'src/core/ortogonal_solutions/Optional';
 import { VistaNota } from 'src/Note/application/crear_Nota/VistaNota';
+import { IsEmpty } from 'class-validator';
 
 @Controller('nota')
 export class NotaController {
@@ -27,20 +28,16 @@ export class NotaController {
     }
 
     @Post()
+    @UsePipes(ValidationPipe)
     crearNota(@Body() nuevaNota:CrearNotaDTO){
-
-        let fechaeliminada:Optional<Date>
-        if (nuevaNota.fechaEliminacion == null)
-            fechaeliminada = new Optional<Date>();
-        else
-            fechaeliminada = new Optional<Date>(nuevaNota.fechaEliminacion);
+        
+        const fechaeliminada:Optional<Date> = new Optional<Date>(nuevaNota.fechaEliminacion);
         
         const cmd:CrearNotaComando = new CrearNotaComando(nuevaNota.titulo, nuevaNota.cuerpo, nuevaNota.fechaCreacion, fechaeliminada,
                                                             nuevaNota.fechaActualizacion, nuevaNota.latitud, nuevaNota.altitud, "");
         
-
         const result:Either<VistaNota,Error> = this.commandHandler.execute(cmd);
-
+        
 
         if (result.isLeft()){
             return result.getLeft();
