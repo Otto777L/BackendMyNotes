@@ -8,6 +8,7 @@ import { RepositorioNota } from "src/Note/domain/repositories/RepositorioNota";
 import { MementoNota } from "src/Note/domain/MementoNota";
 import { Error } from "mongoose";
 import { MongoError } from "mongodb";
+import { IdNota } from "src/Note/domain/value_objects/IdNota";
 
 @Injectable()
 export class MongoNotaRepositorio{
@@ -19,6 +20,17 @@ export class MongoNotaRepositorio{
         try {
             //console.log('prueba2', await new this.notamodel(nota));
             const notaGuardada = await (new this.notamodel(nota)).save();
+            
+            return Promise.resolve(Either.makeLeft<Optional<MementoNota>, Error>(new Optional<MementoNota>(nota)));
+        } catch (e) {
+            return Promise.resolve(Either.makeRight<Optional<MementoNota>, Error>(e));
+        }
+    }
+
+    async eliminarNota(nota:MementoNota):Promise<Either<Optional<MementoNota>, Error>>{
+        try {
+            //console.log('prueba2', await new this.notamodel(nota));
+            const notaGuardada = await (new this.notamodel(nota)).deleteOne({notaId: nota.notaId});
             
             return Promise.resolve(Either.makeLeft<Optional<MementoNota>, Error>(new Optional<MementoNota>(nota)));
         } catch (e) {

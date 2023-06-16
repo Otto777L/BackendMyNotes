@@ -19,14 +19,10 @@ export class CrearNota implements IServicio<MementoNota>{
 
     public async execute(cmd:CrearNotaComando):Promise<Either<MementoNota, Error>>{
         /*
-            generar uuid  ####
-            crear objecto 
-            "guardar nota"
-                - publicar evento de notacreada
-                - guardar y actualizar lo que se deba actualizar  
+            - publicar evento de notacreada
         */
         let notaId:string = this.generadorUUID.generate();
-        let nota:Nota = FabricaNota.fabricar(notaId, cmd.titulo,cmd.cuerpo,cmd.fechaCreacion,cmd.fechaEliminacion,cmd.fechaActualizacion,
+        let nota:Nota = FabricaNota.fabricarNota(notaId, cmd.titulo,cmd.cuerpo,cmd.fechaCreacion,cmd.fechaEliminacion,cmd.fechaActualizacion,
                                                 cmd.latitud,cmd.altitud, cmd.usuarioId);
         
         console.log(nota);    
